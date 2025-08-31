@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://https://github.com/mahatsandeep/
-        username: ${{ secrets.AzureAppService_ContainerUsername_b12be0d9e79e4f079e7075a66fe473a2 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_949f42c88c1d434587c7cc382a066bc0 }}
+        registry: https://github.com/mahatsandeep/sample-app-aoai-chatgpt/
+        username: ${{ secrets.AzureAppService_ContainerUsername_21f42f0067494715b66f52421a763793 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_2b73082eba6445aebf1134268becac4f }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: https://github.com/mahatsandeep/${{ secrets.AzureAppService_ContainerUsername_b12be0d9e79e4f079e7075a66fe473a2 }}/sample-app-aoai-chatgpt:${{ github.sha }}
+        tags: github.com/mahatsandeep/sample-app-aoai-chatgpt/${{ secrets.AzureAppService_ContainerUsername_21f42f0067494715b66f52421a763793 }}/sample-app-aoai-chatgpt:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'TT-DEMO-RAG'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0b6348cd62ce4d648b60f889b2ec5a76 }}
-        images: 'https://github.com/mahatsandeep/${{ secrets.AzureAppService_ContainerUsername_b12be0d9e79e4f079e7075a66fe473a2 }}/sample-app-aoai-chatgpt:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e4e5db6f9be44fe3ab173afcf2941c4f }}
+        images: 'github.com/mahatsandeep/sample-app-aoai-chatgpt/${{ secrets.AzureAppService_ContainerUsername_21f42f0067494715b66f52421a763793 }}/sample-app-aoai-chatgpt:${{ github.sha }}'
